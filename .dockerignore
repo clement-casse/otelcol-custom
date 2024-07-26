@@ -1,0 +1,4 @@
+.envrc
+flake.nix
+flake.lock
+examples/

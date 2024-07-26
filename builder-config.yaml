@@ -1,0 +1,18 @@
+dist:
+  name: otelcol-custom-dev # Set To whatever for development, will be overrided by Nix derivation
+  description: Local OpenTelemetry Collector binary
+  output_path: /tmp/dist
+
+receivers:
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.104.0
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.104.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.104.0
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.104.0
+
+
+extensions:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.104.0
