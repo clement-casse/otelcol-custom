@@ -1,7 +1,5 @@
 # A Custom OpenTelemetry Collector *(with Nix)*
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/clement-casse/otelcol-custom)](https://goreportcard.com/report/github.com/clement-casse/otelcol-custom)
-
 ## Scope of the project
 
 This project aims to demonstrate how to create custom OpenTelemetry Collectors with custom modules by leveraging the tools and methods used by the OpenTelemetry project.
