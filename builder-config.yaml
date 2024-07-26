@@ -13,6 +13,5 @@ processors:
 exporters:
   - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.104.0
 
-
 extensions:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.104.0
