@@ -1,0 +1,32 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+processors:
+  batch:
+
+exporters:
+  debug:
+    verbosity: detailed
+
+  cyphergraph/neo4jcontainer:
+    db_uri: bolt://neo4j:7687
+    username: neo4j
+    password: some_password
+
+  cyphergraph/memgraphcontainer:
+    db_uri: bolt://memgraph:7688
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug, cyphergraph/neo4jcontainer, cyphergraph/memgraphcontainer]

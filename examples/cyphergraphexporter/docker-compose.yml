@@ -1,0 +1,77 @@
+version: '3.9'
+
+volumes:
+  neo4jdata:
+  memgraphdata:
+
+services:
+  telemetrygen:
+    image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:latest
+    restart: on-failure
+    command: [
+      "traces",
+      "--otlp-insecure",
+      "--otlp-endpoint", "otelcol:4317",
+      "--traces", "1",
+    ]
+    depends_on:
+      otelcol:
+        condition: service_healthy
+
+  otelcol:
+    build:
+      dockerfile: Dockerfile
+      context: ../..
+    restart: unless-stopped
+    ports:
+      - "4317:4317"
+    volumes:
+      - ./otelcol-config.yml:/usr/src/app/dist/otelcol-config.yml:ro
+    command: [
+      --config=/usr/src/app/dist/otelcol-config.yml
+    ]
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    healthcheck:
+      test: wget http://localhost:13133/ || exit 1
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+  neo4j:
+    image: neo4j:5-bullseye
+    restart: unless-stopped
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/some_password
+    volumes:
+      - neo4jdata:/data
+    healthcheck:
+      test: wget http://localhost:7474 || exit 1
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+  memgraph:
+    image: memgraph/memgraph:latest
+    restart: unless-stopped
+    ports:
+      - "7688:7688"
+    volumes:
+      - memgraphdata:/var/lib/memgraph
+    command: [
+      "--bolt-port=7688",
+      "--data-directory=/var/lib/memgraph",
+      "--telemetry-enabled=false",
+    ]
+
+  memgraph-lab:
+    image: memgraph/lab:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - memgraph

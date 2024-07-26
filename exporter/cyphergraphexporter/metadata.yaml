@@ -1,0 +1,11 @@
+type: cyphergraph
+
+status:
+  class: exporter
+  stability:
+    alpha: [traces]
+  distributions: []
+
+tests:
+  skip_lifecycle: true
+  skip_shutdown: false
