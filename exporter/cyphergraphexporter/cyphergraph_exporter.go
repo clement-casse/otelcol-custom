@@ -1,4 +1,4 @@
-package cyphergraphexporter // import "github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter"
+package cyphergraphexporter // import "github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter"
 
 import (
 	"context"
@@ -11,8 +11,8 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	"go.uber.org/zap"
 
-	"github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter/internal/graphmodel"
-	"github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter/internal/neo4jdriverwrap"
+	"github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter/internal/graphmodel"
+	"github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter/internal/neo4jdriverwrap"
 )
 
 type cyphergraphTraceExporter struct {

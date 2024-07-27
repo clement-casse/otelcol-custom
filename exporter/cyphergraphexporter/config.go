@@ -1,4 +1,4 @@
-package cyphergraphexporter // import "github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter"
+package cyphergraphexporter // import "github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter"
 
 import (
 	"errors"

@@ -9,9 +9,9 @@ import (
 )
 
 func Meter(settings component.TelemetrySettings) metric.Meter {
-	return settings.MeterProvider.Meter("github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter")
+	return settings.MeterProvider.Meter("github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter")
 }
 
 func Tracer(settings component.TelemetrySettings) trace.Tracer {
-	return settings.TracerProvider.Tracer("github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter")
+	return settings.TracerProvider.Tracer("github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter")
 }

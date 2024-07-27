@@ -1,4 +1,4 @@
-module github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter
+module github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter
 
 go 1.21.0
 

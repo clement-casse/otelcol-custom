@@ -90,7 +90,7 @@ linters-settings:
   goimports:
     # put imports beginning with prefix after 3rd-party packages;
     # it's a comma-separated list of prefixes
-    local-prefixes: github.com/clement-casse/playground/otelcol-custom
+    local-prefixes: github.com/clement-casse/otelcol-custom
 
   misspell:
     # Correct spellings using locale preferences for US or UK.

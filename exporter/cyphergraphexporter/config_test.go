@@ -10,7 +10,7 @@ import (
 	"go.opentelemetry.io/collector/config/configopaque"
 	"go.opentelemetry.io/collector/confmap/confmaptest"
 
-	"github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter/internal/metadata"
+	"github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter/internal/metadata"
 )
 
 func defaultRessourceMapperWith(extensions map[string]*ResourceMapper) map[string]*ResourceMapper {

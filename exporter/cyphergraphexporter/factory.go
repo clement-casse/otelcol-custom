@@ -1,4 +1,4 @@
-package cyphergraphexporter // import "github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter"
+package cyphergraphexporter // import "github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter"
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
 
-	"github.com/clement-casse/playground/otelcol-custom/exporter/cyphergraphexporter/internal/metadata"
+	"github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter/internal/metadata"
 )
 
 // NewFactory creates a factory for the CypherGraph exporter.
