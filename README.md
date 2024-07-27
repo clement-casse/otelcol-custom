@@ -11,7 +11,7 @@ So, in order to lower complexity to a more familiar level for occasionnal Go dev
 - I do not use [chloggen](https://go.opentelemetry.io/build-tools/chloggen) no any of the [opentelemetry-go-build-tools](https://github.com/open-telemetry/opentelemetry-go-build-tools) (yet ?): my project is not at a maturity level where these tools would be benefical.
 - The project is built with Nix, although it is not a hard dependancy and can be omited (and should by not conoiseurs), it allows to unify the build process and the required tooling. While Nix may have high potential on build reproductibility, I am not familiar enougth with the tool to use it in CI too, but I am looking forward to it, currently it is only used to provide a dev shell with Go and the ocb binary and to run ocb with on the [./builder-config.yaml](./builder-config.yaml) file.
 - a Dockerfile defines the image specification of this custom OpenTelemetry container that can run all sub directories in the [`./examples/`](./examples/) directory.
-- CI~~/CD~~ is lighter and more leniant, it is defined as part of the [playground repository](.github/workflows/).
+- CI/CD is lighter and more leniant, it is defined as part of the [playground repository](.github/workflows/).
 
 
 ## References

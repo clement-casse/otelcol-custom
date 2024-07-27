@@ -1,0 +1,22 @@
+name: Cleanup PR Images
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  purge-images:
+    name: Delete image from ghcr.io
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - uses: quartx-analytics/ghcr-cleaner@v1
+        with:
+          owner-type: user
+          repository-owner: ${{ github.repository_owner }}
+          repository-name: ${{ github.repository }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          delete-untagged: true
