@@ -104,7 +104,7 @@
           patchPhase = ''
             runHook prePatch
             ${yq-go}/bin/yq -i '
-              .dist.name =  "${pname}" |
+              .dist.name = "${pname}" |
               .dist.version = "${version}" |
               .dist.otelcol_version = "${otelcolVersion}" |
               .dist.output_path = "'$gen'/go/src/${pname}"' ${builderManifestFile}
@@ -142,7 +142,5 @@
             runHook postInstall
           '';
         };
-
-        apps.default = { };
       });
 }
