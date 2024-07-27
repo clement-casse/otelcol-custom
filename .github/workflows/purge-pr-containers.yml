@@ -8,15 +8,14 @@ jobs:
   purge-images:
     name: Delete image from ghcr.io
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
     steps:
       - uses: quartx-analytics/ghcr-cleaner@v1
         with:
           owner-type: user
           repository-owner: ${{ github.repository_owner }}
           repository-name: ${{ github.repository }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           delete-untagged: true
+          keep-at-most: 5
+          filter-tags: pr-*
+          skip-tags: main
