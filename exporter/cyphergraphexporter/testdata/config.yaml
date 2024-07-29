@@ -1,0 +1,37 @@
+cyphergraph:
+cyphergraph/withnoauth:
+  db_uri: "bolt://neo4j-host:7687"
+cyphergraph/withbasicauth:
+  db_uri: "bolt://neo4j-host:7687"
+  username: "neo4j"
+  password: "password"
+cyphergraph/withbearertoken:
+  db_uri: "bolt://neo4j-host:7687"
+  bearer_token: "somevalue"
+cyphergraph/withkerberosticket:
+  db_uri: "bolt://neo4j-host:7687"
+  kerberos_ticket: "somevalue"
+cyphergraph/withcustomua:
+  user_agent: "testUserAgent"
+cyphergraph/ERRORwithbasicandbearer:
+  username: "neo4j"
+  password: "password"
+  bearer_token: "somevalue"
+cyphergraph/ERRORwithabearerandkerb:
+  bearer_token: "somevalue"
+  kerberos_ticket: "somevalue"
+cyphergraph/ERRORwithallauthmethods:
+  username: "neo4j"
+  password: "password"
+  bearer_token: "somevalue"
+  kerberos_ticket: "somevalue"
+cyphergraph/ERRORbadurl:
+  db_uri: "://abcdefghijklmno"
+cyphergraph/withcustomresourcemapper:
+  db_uri: "bolt://neo4j-host:7687"
+  resources:
+    "custom.resource1":
+      identified_by: "attr.resource1.uid"
+    "custom.Resource2":
+      identified_by: "attr.resource2.uid"
+      other_properties: [ "other.attr.resource2" ]

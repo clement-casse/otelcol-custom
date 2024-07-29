@@ -1,0 +1,70 @@
+name: "Validate and Test Modules"
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+permissions:
+  contents: read
+  pull-requests: read
+  checks: write
+
+env:
+  GO_VERSION: "~1.21"
+
+jobs:
+  Validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module:
+          # Add all custom modules here to execute Validate jobs
+          - exporter/cyphergraphexporter
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache-dependency-path: "${{ matrix.module }}/go.sum"
+      - name: Go Vet
+        run: go vet -json ./...
+        working-directory: "${{ matrix.module }}"
+      - name: Go fmt
+        run: test -z $(go fmt ./...)
+        working-directory: "${{ matrix.module }}"
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v4
+        with:
+          version: latest
+          skip-pkg-cache: true
+          working-directory: "${{ matrix.module }}"
+
+  Test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module:
+          # Add all custom modules here to execute Test jobs
+          - exporter/cyphergraphexporter
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache-dependency-path: "${{ matrix.module }}/go.sum"
+      - name: Go Test Coverage
+        working-directory: ${{ matrix.module }}
+        run: |
+          go test -failfast -race -covermode=atomic -coverprofile=coverage.out ./...
+          sed -i '/_gen.go:/d' coverage.out
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.1.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          codecov_yml_path: ./codecov.yml
+          flags: ${{ matrix.module }}

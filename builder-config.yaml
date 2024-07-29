@@ -12,6 +12,8 @@ processors:
 
 exporters:
   - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.104.0
+  - gomod: github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter v0.0.0
+    path: ./exporter/cyphergraphexporter
 
 extensions:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.104.0
