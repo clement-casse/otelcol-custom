@@ -1,4 +1,4 @@
-name: "Custom Modules"
+name: "Validate and Test Modules"
 on:
   pull_request:
   push:
@@ -66,5 +66,5 @@ jobs:
         uses: codecov/codecov-action@v4.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          codecov_yml_path: ./codecov.yaml
+          codecov_yml_path: ./codecov.yml
           flags: ${{ matrix.module }}

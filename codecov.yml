@@ -1,0 +1,11 @@
+comment:
+  layout: "header, diff, flags, components"
+
+component_management:
+  individual_components:
+    - component_id: cyphergraph-exporter
+      name: cyphergraphexporter
+      paths: ["exporter/cyphergraphexporter/coverage.out"]
+      statuses:
+        - type: project
+          target: auto
