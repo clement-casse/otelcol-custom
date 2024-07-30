@@ -6,10 +6,10 @@ services:
       [
         "traces",
         "--otlp-insecure",
-        "--otlp-endpoint",
-        "otelcol:4317",
-        "--traces",
-        "1",
+        "--otlp-endpoint=otelcol:4317",
+        "--traces=10",
+        "--child-spans=8",
+        "--span-duration=1ms",
       ]
     depends_on:
       otelcol:
