@@ -2,6 +2,8 @@ module github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter
 
 go 1.21.0
 
+toolchain go1.21.12
+
 require (
 	github.com/neo4j/neo4j-go-driver/v5 v5.23.0
 	github.com/stretchr/testify v1.9.0
