@@ -46,13 +46,13 @@
 
         # Referencing the source repository of `opentelemetry-collector` and `opentelemetry-collector-contrib`
         # to build custom tools for collector modules development.
-        otelcolVersion = "0.106.0";
+        otelcolVersion = "0.106.1";
         otelcolSource = pkgs.fetchFromGitHub
           {
             owner = "open-telemetry";
             repo = "opentelemetry-collector";
             rev = "v${otelcolVersion}";
-            sha256 = "sha256-+qIml6AmtFv+RxxrNXm8gx3iNbW/acK2R2U4mjZRilQ=";
+            sha256 = "sha256-Xpm+zQz6lAcJ2Mx7q2wA/9REXSCncV54Wv2icAIPLJc=";
           };
 
         # Define OpenTelemetry Collector Builder Binary: It does not exist in the nixpkgs repo.

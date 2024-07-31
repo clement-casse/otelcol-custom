@@ -5,6 +5,7 @@
 # Repository layout
 local/
 vendor/
+gen/
 go.work*
 
 # Binaries for programs and plugins
