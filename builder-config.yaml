@@ -1,7 +1,7 @@
 dist:
   name: otelcol-custom-dev # Set To whatever for development, will be overrided by Nix derivation
   description: Local OpenTelemetry Collector binary
-  output_path: /tmp/dist
+  output_path: gen
 
 receivers:
   - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.106.1
