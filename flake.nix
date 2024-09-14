@@ -18,7 +18,7 @@
         # Specify the version of Go for all derivétion that will use go later on.
         overlays = [
           (final: prev: {
-            go = prev.go_1_21;
+            go = prev.go_1_22;
           })
         ];
 
@@ -46,13 +46,13 @@
 
         # Referencing the source repository of `opentelemetry-collector` and `opentelemetry-collector-contrib`
         # to build custom tools for collector modules development.
-        otelcolVersion = "0.106.1";
+        otelcolVersion = "0.109.0";
         otelcolSource = pkgs.fetchFromGitHub
           {
             owner = "open-telemetry";
             repo = "opentelemetry-collector";
             rev = "v${otelcolVersion}";
-            sha256 = "sha256-Xpm+zQz6lAcJ2Mx7q2wA/9REXSCncV54Wv2icAIPLJc=";
+            sha256 = "sha256-ShVUBohSnIoeq2aTWJ9IMXKt0CeRv3CZjlqpYHR9DhY=";
           };
 
         # Define OpenTelemetry Collector Builder Binary: It does not exist in the nixpkgs repo.
@@ -61,7 +61,7 @@
           pname = "ocb"; # The Package is named `ocb` but buildGoModule installs it as `builder`
           version = otelcolVersion;
           src = otelcolSource + "/cmd/builder";
-          vendorHash = "sha256-+98zxqdjaDEPsbnGA8aiCV+l6oOJvpaVOianj9lJY0U=";
+          vendorHash = "sha256-M1sFwuwtsusT4bnY4mTMVO1LTdA0OXXJxT65RTStmk4=";
 
           # Tune Build Process
           CGO_ENABLED = 0;

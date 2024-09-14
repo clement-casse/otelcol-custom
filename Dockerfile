@@ -1,6 +1,6 @@
-ARG go_version=1.21
+ARG go_version=1.22
 ARG otelcol_name=otelcol
-ARG otelcol_builder_version=0.106.1
+ARG otelcol_builder_version=0.109.0
 
 FROM powerman/dockerize:0.19.0 AS dockerize
 
