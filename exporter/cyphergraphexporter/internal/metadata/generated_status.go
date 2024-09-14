@@ -7,7 +7,8 @@ import (
 )
 
 var (
-	Type = component.MustNewType("cyphergraph")
+	Type      = component.MustNewType("cyphergraph")
+	ScopeName = "github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter"
 )
 
 const (
