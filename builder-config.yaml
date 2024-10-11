@@ -4,24 +4,16 @@ dist:
   output_path: gen
 
 receivers:
-  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.109.0
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.111.0
 
 processors:
-  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.109.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.109.0
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.111.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/spanprocessor v0.111.0
 
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.109.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.111.0
   - gomod: github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter v0.0.0
     path: ./exporter/cyphergraphexporter
 
 extensions:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.109.0
-
-## Fix for v0.109.0
-providers:
-  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.15.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.15.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v0.109.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v0.109.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v0.109.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.111.0
