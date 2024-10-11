@@ -3,12 +3,12 @@ module github.com/clement-casse/otelcol-custom/exporter/cyphergraphexporter
 go 1.22.0
 
 require (
-	github.com/neo4j/neo4j-go-driver/v5 v5.24.0
+	github.com/neo4j/neo4j-go-driver/v5 v5.25.0
 	github.com/stretchr/testify v1.9.0
 	github.com/testcontainers/testcontainers-go v0.33.0
 	go.opentelemetry.io/collector/cmd/mdatagen v0.111.0
 	go.opentelemetry.io/collector/component v0.111.0
-	go.opentelemetry.io/collector/config/configopaque v1.15.0
+	go.opentelemetry.io/collector/config/configopaque v1.17.0
 	go.opentelemetry.io/collector/config/configretry v1.17.0
 	go.opentelemetry.io/collector/confmap v1.17.0
 	go.opentelemetry.io/collector/consumer v0.111.0
@@ -37,7 +37,7 @@ require (
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
-	github.com/go-viper/mapstructure/v2 v2.1.0 // indirect
+	github.com/go-viper/mapstructure/v2 v2.2.1 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
@@ -93,13 +93,13 @@ require (
 	go.opentelemetry.io/otel/sdk/metric v1.30.0 // indirect
 	go.opentelemetry.io/otel/trace v1.30.0
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.27.0 // indirect
-	golang.org/x/net v0.29.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
-	golang.org/x/text v0.18.0 // indirect
+	golang.org/x/crypto v0.28.0 // indirect
+	golang.org/x/net v0.30.0 // indirect
+	golang.org/x/sys v0.26.0 // indirect
+	golang.org/x/text v0.19.0 // indirect
 	golang.org/x/time v0.0.0-20220210224613-90d013bbcef8 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240903143218-8af14fe29dc1 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20241007155032-5fefd90f89a9 // indirect
 	google.golang.org/grpc v1.67.1 // indirect
-	google.golang.org/protobuf v1.34.2 // indirect
+	google.golang.org/protobuf v1.35.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
