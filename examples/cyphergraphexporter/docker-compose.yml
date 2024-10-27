@@ -6,10 +6,17 @@ services:
       [
         "traces",
         "--otlp-insecure",
-        "--otlp-endpoint",
-        "otelcol:4317",
-        "--traces",
-        "1",
+        "--otlp-endpoint=otelcol:4317",
+        "--traces=1",
+        "--child-spans=3",
+        "--otlp-attributes=k8s.namespace.name=\"my-namespace\"",
+        "--otlp-attributes=k8s.deployment.name=\"my-deployment\"",
+        "--otlp-attributes=k8s.replicaset.name=\"my-deployment-66cf4d99b5\"",
+        "--otlp-attributes=k8s.pod.name=\"my-deployment-66cf4d99b5-kpqg\"",
+        "--otlp-attributes=k8s.pod.uid=\"7293ca81-d35e-459d-b15a-a8197fbc03e4\"",
+        "--otlp-attributes=k8s.node.name=\"my-node\"",
+        "--otlp-attributes=cloud.availability.zone=\"my-az\"",
+        "--otlp-attributes=cloud.region=\"my-region\"",
       ]
     depends_on:
       otelcol:

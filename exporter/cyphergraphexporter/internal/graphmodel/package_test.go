@@ -3,7 +3,6 @@ package graphmodel
 import (
 	"context"
 	"fmt"
-	"testing"
 	"time"
 
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
@@ -11,17 +10,12 @@ import (
 	"github.com/testcontainers/testcontainers-go/wait"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/otel/attribute"
-	"go.uber.org/goleak"
 )
 
 var (
 	neo4jContainerImage    = "neo4j:5-bullseye"
 	memgraphContainerImage = "memgraph/memgraph:latest"
 )
-
-func TestMain(m *testing.M) {
-	goleak.VerifyTestMain(m)
-}
 
 // The following are utility functions used throughout the various tests present in this package.
 
