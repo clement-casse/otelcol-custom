@@ -1,6 +1,6 @@
 ARG go_version=1.22
 ARG otelcol_name=otelcol
-ARG otelcol_builder_version=0.112.0
+ARG otelcol_builder_version=0.115.0
 
 FROM powerman/dockerize:0.19.0 AS dockerize
 
@@ -23,7 +23,6 @@ COPY . .
 RUN --mount=type=cache,target=$GOPKG/pkg \
     --mount=type=cache,target=/root/.cache/go-build \
     yq -i '.dist.output_path = "/usr/src/gen" | \
-    .dist.otelcol_version = "'${otelcol_builder_version}'" | \
     .dist.name ="'${otelcol_name}'"' ./builder-config.yaml; \
     CGO_ENABLED=0 GOOS=linux GOWORK=off \
     builder --config=./builder-config.yaml;
