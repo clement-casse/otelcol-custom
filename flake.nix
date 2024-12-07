@@ -46,13 +46,13 @@
 
         # Referencing the source repository of `opentelemetry-collector` and `opentelemetry-collector-contrib`
         # to build custom tools for collector modules development.
-        otelcolVersion = "0.112.0";
+        otelcolVersion = "0.115.0";
         otelcolSource = pkgs.fetchFromGitHub
           {
             owner = "open-telemetry";
             repo = "opentelemetry-collector";
             rev = "v${otelcolVersion}";
-            sha256 = "sha256-0eL9J+PrURiNkL6CzUIlcvjyZor8iS9vKX8j0srLlZ8=";
+            sha256 = "sha256-wl0ThYbDTVLuN9FkrsHF1prydrPMIaiK/9s2Ipeqfik=";
           };
 
         # Define OpenTelemetry Collector Builder Binary: It does not exist in the nixpkgs repo.
@@ -61,7 +61,7 @@
           pname = "ocb"; # The Package is named `ocb` but buildGoModule installs it as `builder`
           version = otelcolVersion;
           src = otelcolSource + "/cmd/builder";
-          vendorHash = "sha256-vZsGSLdzKa4sA/N3RG6Kwn8tMoIIhPJ6uAkM4pheitU=";
+          vendorHash = "sha256-8g/92NOCj/mH1szrKR04R+Yy9GBYNnQFMi9KhqGKelU=";
 
           # Tune Build Process
           CGO_ENABLED = 0;
@@ -106,7 +106,6 @@
             ${yq-go}/bin/yq -i '
               .dist.name = "${pname}" |
               .dist.version = "${version}" |
-              .dist.otelcol_version = "${otelcolVersion}" |
               .dist.output_path = "'$gen'/go/src/${pname}"' ${builderManifestFile}
             echo "===== FILE PATCHED: ${builderManifestFile} ====="
             cat ${builderManifestFile}
