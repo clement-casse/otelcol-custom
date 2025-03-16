@@ -1,4 +1,4 @@
-ARG go_version=1.22
+ARG go_version=1.23
 ARG otelcol_name=otelcol
 ARG otelcol_builder_version=0.115.0
 
