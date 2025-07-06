@@ -1,6 +1,6 @@
 ARG go_version=1.23
 ARG otelcol_name=otelcol
-ARG otelcol_builder_version=0.121.0
+ARG otelcol_builder_version=0.129.0
 
 FROM powerman/dockerize:0.19.0 AS dockerize
 
@@ -11,16 +11,15 @@ FROM golang:${go_version} AS otelcolbuilder
 ARG otelcol_name
 ARG otelcol_builder_version
 
-RUN --mount=type=cache,target=$GOPKG/pkg \
-    go install github.com/mikefarah/yq/v4@latest; \
-    go install go.opentelemetry.io/collector/cmd/builder@v${otelcol_builder_version}; \
-    command -v yq && command -v builder;
+RUN --mount=type=cache,target=/go/pkg/mod \
+    go install github.com/mikefarah/yq/v4@v4.45.1; \
+    go install go.opentelemetry.io/collector/cmd/builder@v${otelcol_builder_version};
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-RUN --mount=type=cache,target=$GOPKG/pkg \
+RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     yq -i '.dist.output_path = "/usr/src/gen" | \
     .dist.name ="'${otelcol_name}'"' ./builder-config.yaml; \

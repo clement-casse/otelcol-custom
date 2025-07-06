@@ -1,6 +1,6 @@
 # Nix & direnv
 .direnv/
-result/
+result
 
 # Repository layout
 local/
