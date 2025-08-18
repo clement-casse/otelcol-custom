@@ -1,18 +1,17 @@
 package graphmodel
 
 import (
-	"context"
 	"testing"
 
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/otel/attribute"
-	semconv "go.opentelemetry.io/otel/semconv/v1.24.0"
+	semconv "go.opentelemetry.io/otel/semconv/v1.34.0"
 	"go.uber.org/zap"
 )
 
-const databaseEngine = "memgraph"
+const databaseEngine = "neo4j"
 
 var (
 	emptyResource  = pcommon.NewResource()
@@ -31,10 +30,9 @@ var (
 )
 
 func TestMergeResource(t *testing.T) {
-	ctx := context.Background()
-	driver, closeFunc, err := InitCypherDBTestContainer(ctx, databaseEngine)
+	driver, closeFunc, err := InitCypherDBTestContainer(t.Context(), databaseEngine)
 	assert.NoError(t, err)
-	defer closeFunc(ctx)
+	defer closeFunc(t.Context())
 	logger, _ := zap.NewDevelopment()
 
 	encoder := NewEncoder(map[attribute.Key]ResourceEncoder{
@@ -76,16 +74,16 @@ func TestMergeResource(t *testing.T) {
 		},
 	} {
 		t.Run(tt.name, func(t *testing.T) {
-			session := driver.NewSession(ctx, neo4j.SessionConfig{})
-			_, err = session.ExecuteWrite(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
-				return nil, encoder.MergeResource(ctx, tx, tt.resource)
+			session := driver.NewSession(t.Context(), neo4j.SessionConfig{})
+			_, err = session.ExecuteWrite(t.Context(), func(tx neo4j.ManagedTransaction) (any, error) {
+				return nil, encoder.MergeResource(t.Context(), tx, tt.resource)
 			})
 			assert.NoError(t, err)
 
-			_, err = session.ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
-				result, err2 := tx.Run(ctx, tt.cypherQuery, map[string]any{})
+			_, err = session.ExecuteRead(t.Context(), func(tx neo4j.ManagedTransaction) (any, error) {
+				result, err2 := tx.Run(t.Context(), tt.cypherQuery, map[string]any{})
 				assert.NoError(t, err2)
-				records, err2 := result.Collect(ctx)
+				records, err2 := result.Collect(t.Context())
 				assert.NoError(t, err2)
 
 				for _, rec := range records {

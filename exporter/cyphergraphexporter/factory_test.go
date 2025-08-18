@@ -1,7 +1,6 @@
 package cyphergraphexporter
 
 import (
-	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -33,7 +32,7 @@ func TestFactory_CreateMetricsExporter_Fail(t *testing.T) {
 	factory := NewFactory()
 	cfg := factory.CreateDefaultConfig()
 	params := exportertest.NewNopSettings(metadata.Type)
-	_, err := factory.CreateMetrics(context.Background(), params, cfg)
+	_, err := factory.CreateMetrics(t.Context(), params, cfg)
 	require.Error(t, err)
 }
 
@@ -41,7 +40,7 @@ func TestFactory_CreateLogsExporter_Fail(t *testing.T) {
 	factory := NewFactory()
 	cfg := factory.CreateDefaultConfig()
 	params := exportertest.NewNopSettings(metadata.Type)
-	_, err := factory.CreateLogs(context.Background(), params, cfg)
+	_, err := factory.CreateLogs(t.Context(), params, cfg)
 	require.Error(t, err)
 }
 
@@ -51,7 +50,7 @@ func TestFactory_CreateTraceExporter_Fail(t *testing.T) {
 		c.DatabaseURI = ""
 	})
 	params := exportertest.NewNopSettings(metadata.Type)
-	_, err := factory.CreateTraces(context.Background(), params, cfg)
+	_, err := factory.CreateTraces(t.Context(), params, cfg)
 	require.Error(t, err)
 }
 
@@ -59,9 +58,9 @@ func TestFactory_CreateTraceExporter(t *testing.T) {
 	factory := NewFactory()
 	cfg := factory.CreateDefaultConfig()
 	params := exportertest.NewNopSettings(metadata.Type)
-	exporter, err := factory.CreateTraces(context.Background(), params, cfg)
+	exporter, err := factory.CreateTraces(t.Context(), params, cfg)
 	require.NoError(t, err)
 	require.NotNil(t, exporter)
 
-	require.NoError(t, exporter.Shutdown(context.TODO()))
+	require.NoError(t, exporter.Shutdown(t.Context()))
 }
