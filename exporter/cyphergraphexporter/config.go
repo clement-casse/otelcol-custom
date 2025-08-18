@@ -7,7 +7,7 @@ import (
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/config/configopaque"
 	"go.opentelemetry.io/collector/config/configretry"
-	semconv "go.opentelemetry.io/otel/semconv/v1.24.0"
+	semconv "go.opentelemetry.io/otel/semconv/v1.34.0"
 )
 
 const (
@@ -28,8 +28,8 @@ var (
 			IdentifiedByKey: string(semconv.ServiceNameKey),
 			OtherProperties: []string{string(semconv.ServiceVersionKey), string(semconv.ServiceInstanceIDKey), string(semconv.ServiceNamespaceKey)},
 		},
-		"deployment": {
-			IdentifiedByKey: string(semconv.DeploymentEnvironmentKey),
+		"environment": {
+			IdentifiedByKey: string(semconv.DeploymentEnvironmentNameKey),
 		},
 		"container": {
 			IdentifiedByKey: string(semconv.ContainerIDKey),
@@ -64,7 +64,7 @@ var (
 	// defaultContainmentOrder provides the order of containment of resources
 	defaultContainmentOrder = map[string][]string{
 		"service":      {"deployment"},
-		"deployment":   {},
+		"environment":  {},
 		"container":    {"host", "k8s.pod"},
 		"k8s.pod":      {"k8s.node", "cloud.az"},
 		"k8s.node":     {"k8s.cluster"},
