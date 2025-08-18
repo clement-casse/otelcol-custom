@@ -3,6 +3,6 @@
         "golang.go",
         "jnoortheen.nix-ide",
         "pinage404.nix-extension-pack",
-        "jakeboone02.cypher-query-language"
+        "neo4j-extensions.neo4j-for-vscode"
     ]
 }

@@ -2,14 +2,21 @@ package graphmodel
 
 import (
 	"context"
-	_ "embed"
 
 	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 )
 
-//go:embed mergeResources.cypher
-var cypherQueryNewResource string
+var cypherQueryNewResource = `//cypher
+UNWIND $resources AS resource
+MERGE (r:Resource {type: resource.label, id: resource.id})
+  ON CREATE SET r.created = timestamp(), r += resource.props
+  ON MATCH SET r.lastSeen = timestamp(), r += resource.props
+FOREACH (contained_node IN resource.contained_in |
+  MERGE
+    (r)-[:IS_CONTAINED]->
+    (c:Resource {type: contained_node.label, id: contained_node.id})
+)`
 
 func (e *Encoder) MergeResource(ctx context.Context, tx neo4j.ManagedTransaction, r *pcommon.Resource) error {
 	// Forge a list of map[string]any to be sent as query parameter of neo4j query

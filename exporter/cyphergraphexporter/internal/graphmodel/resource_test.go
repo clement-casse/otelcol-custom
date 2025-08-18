@@ -54,19 +54,19 @@ func TestMergeResource(t *testing.T) {
 		{
 			name:         "an empty resource creates nothing",
 			resource:     &emptyResource,
-			cypherQuery:  `MATCH (r:Resource) RETURN r`,
+			cypherQuery:  `/*cypher*/ MATCH (r:Resource) RETURN r`,
 			expectResult: [][]any{},
 		}, {
 			name:        "create a simple resource with no containment relations",
 			resource:    &simpleResource,
-			cypherQuery: `MATCH (r:Resource) RETURN r.type, r.id`,
+			cypherQuery: `/*cypher*/ MATCH (r:Resource) RETURN r.type, r.id`,
 			expectResult: [][]any{
 				{string(semconv.ServiceNameKey), "name-of-the-service"},
 			},
 		}, {
 			name:        "check K8S containment",
 			resource:    &k8sResource,
-			cypherQuery: `MATCH (r1:Resource)-[:IS_CONTAINED]->(r2:Resource) RETURN r1.type, r1.id, r2.type, r2.id`,
+			cypherQuery: `/*cypher*/ MATCH (r1:Resource)-[:IS_CONTAINED]->(r2:Resource) RETURN r1.type, r1.id, r2.type, r2.id`,
 			expectResult: [][]any{
 				{"k8s.pod", "my-deployment-66cf4d99b5-kpqg", "k8s.deployment", "my-deployment"},
 				{"k8s.deployment", "my-deployment", "k8s.cluster", "my-cluster"},
